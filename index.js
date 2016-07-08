@@ -5,8 +5,7 @@ var data = require('./data.js');
 
 module.exports.obfuscation = function(data) {
   var ALPHABET = "qwertyuiopasdfghjklzxcvbnm0123456789_-".split("");
-  var DIGITS = "123456789_-".split("");
-
+  
   var classesCount = data.reduce(function(acc, className) {
       if (!(className in acc)) {
         acc[className] = 0;
@@ -23,9 +22,6 @@ module.exports.obfuscation = function(data) {
             return classB[1] - classA[1];
           });  /*Сортировка массива по количеству повторяющихся данных */
     console.log(classCountArraySorted);
-
-    var symbolCounter = Math.ceil(Math.log(classCountArraySorted.length) / Math.log(ALPHABET.length));
-    /*Количество символов необходимых для перенаименования классов количеством data.length */
 
     var newClassNames = [];
       for (i=0; i<26; i++){
