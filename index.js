@@ -12,7 +12,7 @@ module.exports = function(data) {
       }
       acc[className] += 1;
       return acc;
-    }, {}); /*Подсчет сколько раз используется тот или иной класс в приходящем массиве data */
+    }, {}); //Подсчет сколько раз используется тот или иной класс в приходящем массиве data
 
     var classCountArray = Object.keys(classesCount).map (function(className) {
           return [className, classesCount[className]];
@@ -20,30 +20,30 @@ module.exports = function(data) {
 
     var classCountArraySorted = classCountArray.sort(function(classA, classB) {
             return classB[1] - classA[1];
-          });  /*Сортировка массива по количеству повторяющихся данных */
-    
+          });  //Сортировка массива по количеству повторяющихся данных
+
     var newClassNames = [];
-      for (i=0; i<26; i++){
+      for (var i=0; i<26; i++){
         newClassNames.push(ALPHABET[i]);
       }
       for (i=0; i < 26; i++){
-        for (j=0; j<ALPHABET.length; j++){
+        for (var j=0; j<ALPHABET.length; j++){
           newClassNames.push(ALPHABET[i]+ALPHABET[j]);
         }
       }
       for (i=0; i < 26; i++){
         for (j=0; j<ALPHABET.length; j++){
-          for(k=0; k<ALPHABET.length; k++){
+          for(var k=0; k<ALPHABET.length; k++){
             newClassNames.push(ALPHABET[i]+ALPHABET[j]+ALPHABET[k]);
           }
         }
       }
       newClassNames.length = classCountArraySorted.length;
-      /* Создание массива с новыми уникальными именами, количество объектов в массиве равняется количеству уникальных значений в data */
+      // Создание массива с новыми уникальными именами, количество объектов в массиве равняется количеству уникальных значений в data
 
       var _generateNewClassName = function(n) {
         return newClassNames[n];
-      } /* Генератор нового имени в зависимости от старого индекса */
+      } // Генератор нового имени в зависимости от старого индекса
 
       var result = classCountArraySorted.reduce(function(acc, classSort, index) {
           var className = classSort[0];
@@ -51,7 +51,7 @@ module.exports = function(data) {
           return acc;
 
         }, {});
-        /* Генерация объекта в котором ключом будет являться старое имя класса, а значением новое */
+        // Генерация объекта в котором ключом будет являться старое имя класса, а значением новое
         return result;
 };
 
